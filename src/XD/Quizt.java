@@ -8,151 +8,188 @@ import java.util.Scanner;
 
 //
 public class Quizt {
-	static Random rand = new Random();
-	static int guess = 0, i = 0;
-	static double n;
-	static String menu;
-	static Scanner scan = new Scanner(System.in);
-	// static Scanner scan = new Scanner (System.in);
-	// static double i =0,menu,o=0,p=0;
-	// static int pizzquan, ppizz,
-	// quantity,total,chicquan,pchic,cokequan,pcoke,pro,point,pp,ck,cc,caou;
-	// static void cash (){
-	// do {System.out.print("CASH IN : "); int cain = scan.nextInt(); caou =
-	// cain-total;if (caou<0){System.out.println("Your money is not enough");}}
-	// while(caou<0);
-	// if(caou>=0){System.out.println("CASH OUT : "+caou);
-	// System.out.println("");}
-	// }
-	// static void point(){ point = total/300;
-	// if(point>0){System.out.println("You have "+point+" point,What do you
-	// want?.");
-	// do{ point = total/300; System.out.print("pizza:"); pp = scan.nextInt();
-	// if(pp>0){for(int zero =0;pp>zero;zero++){point -= 6;}}
-	// System.out.print("Chicken: "); ck = scan.nextInt(); if(ck>0){for(int zero
-	// =0;ck>zero;zero++){point -= 4;}}
-	// System.out.print("Coke: "); cc = scan.nextInt(); if(cc>0){for(int zero
-	// =0;cc>zero;zero++){point -= 2;}}
-	// if(point<0){System.out.println("Yon don't have enough for that.");}
-	// }
-	// while(point<0); System.out.println(""); bill(menu,i,o,p);
-	// if(pp>0&&ck>0&&cc>0){System.out.printf("FREE--[ %d Pizza, %d Chicken, %d
-	// Coke. ]\n",pp,ck,cc);}
-	// if(pp>0&&ck>0&&cc==0){System.out.printf("FREE--[ %d Pizza, %d Chicken.
-	// ]\n",pp,ck);}
-	// if(pp>0&&cc>0&&ck==0){System.out.printf("FREE--[ %d Pizza, %d Chicken.
-	// ]\n",pp,cc);}
-	// if(ck>0&&cc>0&&pp==0){System.out.printf("FREE--[ %d Chicken, %d Coke.
-	// ]\n",ck,cc);}
-	// if(pp>0&&ck==0&&cc==0){System.out.printf("FREE--[ %d Pizza. ]\n",pp);}
-	// if(pp==0&&ck>0&&cc==0){System.out.printf("FREE--[ %d Chicken. ]\n",ck);}
-	// if(pp>0&&ck==0&&cc>0){System.out.printf("FREE--[ %d Coke. ]\n",cc);}
-	// System.out.println("");cash();}
-	// }
-	// static void promotion(){
-	//
-	// do{System.out.println("1.) View Promotion");
-	// System.out.println("2.) Order now");
-	// System.out.println("#-----#");
-	// System.out.print("=> ");
-	// pro = scan.nextInt();
-	// System.out.println("#-----#");
-	// System.out.println("");if(pro==1){
-	// System.out.println("*--------------------------*");
-	// System.out.println("| 2 point = free 1 coke |");
-	// System.out.println("| 4 point = free 1 chicken |");
-	// System.out.println("| 6 point = free 1 pizza |");
-	// System.out.println("*--------------------------*-------------------*");
-	// System.out.println("| You'll get 1 point with a 300-baht purchase. |");
-	// System.out.println("*----------------------------------------------*");
-	// System.out.println("");}
-	// }while(pro!=2);
-	// }
-	// static void menu(){
-	// System.out.printf("+--- MENU -----------------+\n");
-	// System.out.printf("|\t\t\t |\n");
-	// System.out.printf("| 1.) Pizza\t 250 Baht. |\n");
-	// System.out.printf("| 2.) Chickens\t 120 Baht. |\n");
-	// System.out.printf("| 3.) Coke\t 45 Baht. |\n");
-	// System.out.printf("| 4.) Total\t |\n");
-	// System.out.printf("| 5.) Exit\t |\n");
-	// System.out.printf("|\t\t\t |\n");
-	// System.out.printf("+--------------------------+\n");
-	// System.out.printf("\n");
-	// System.out.printf("What would you like to have?\n");
-	// System.out.printf("\n");
-	// }
-	// static Double chic(double menu){
-	// if(menu==2){if(quantity!=0){i++; chicquan = quantity; pchic =
-	// chicquan*120;}else{i=0; pchic =0;}} return i ;
-	// }
-	// static void choice(){
-	// do{ System.out.print("Enter your Choice: ");
-	// menu = scan.nextInt();
-	// if(menu==4){bill(menu,i,o,p);} if(menu==5){break;}if(menu!=4){
-	// System.out.print("Enter Quantity: ");
-	// quantity = scan.nextInt();
-	// System.out.println("");
-	// pizz(menu); chic(menu); coke(menu); }
-	// }
-	// while(menu!=5);}
-	// static Double pizz(double menu){
-	// if(menu==1){if(quantity!=0){o++; pizzquan = quantity; ppizz =
-	// pizzquan*250;}else{o=0;ppizz=0;}} return o ;
-	// }
-	// static Double coke(double menu){
-	// if(menu==3){if (quantity!=0){p++; cokequan = quantity; pcoke =
-	// cokequan*45;}else{p=0;pcoke=0;}} return p ;
-	// }
-	// static void bill(double menu,double i,double o , double p){
-	// if(o==0&&p==0&&i==0){ System.out.println("You didn't select any menu ");
-	// }
-	// else{
-	// { total = (ppizz+pcoke+pchic);System.out.println("+------ Menu ------+--
-	// Qty --+-- Price --+");
-	// if(o>0){System.out.printf("| Pizza | %5d | %5d |\n",pizzquan,ppizz);}
-	// if(i>0){System.out.printf("| Chikens | %5d | %5d |\n",chicquan,pchic);}
-	// if(p>0){System.out.printf("| Coke | %5d | %5d |\n",cokequan,pcoke);}
-	// System.out.println("+------------------+---------+-----------+");
-	// System.out.printf("| Total | %5d |\n",total);
-	// System.out.println("+------------------+---------+-----------+");
-	// System.out.println("");
-	// }}
-	// }
-	// public static void main(String[] args) {
-	// Scanner scan = new Scanner (System.in);
-	// System.out.println("---- Welcome to SKE Restaurant ----");
-	// System.out.println("");
-	// promotion(); menu(); choice(); point();
-	// System.out.println("==== THANK YOU ====");
- static void random(){ n = rand.nextInt(999) + 0; ;
+	/** Tolerance for comparing two values. */
+	private static final double TOL = 1.0E-6;
+	private int passed = 0;
+	private int failed = 0;
 	
-	i = 1; }
-	public static void main(String[] args) {
+	public void init() {
+		passed = failed = 0;
+	}
 		
-		do { n = random();
-		System.out.printf("Note: the random number is %d\n", n);
-			int n = rand.nextInt(999) + 0;
-			System.out.printf("Note: the random number is %d\n", n);
-			i = 1;
-			do {
-				System.out.print("Guess a number (0-999):");
-				guess = scan.nextInt();
-				if (guess > n) {
-					System.out.print("Less than");
-					System.out.printf("(Tries:%d)\n", (i - 1));
-				} else if (n > guess) {
-					System.out.print("More than");
-					System.out.printf("(Tries:%d)\n", i);
-				}
-				i++;
-			} while (guess != n);
-			System.out.println("Correct! Well done!");
-			System.out.println("Total triew = " + (i - 1));
-			System.out.printf("(P)lay again, (Q)uit:");
-			menu = scan.next();
-		} while (!menu.equals("Q"));
-		System.out.println("Bye Bye");
-
+	public void testDotProduct() {
+		double[] a = { 2, 3, 4};
+		double[] b = { 1, -1, 0.5};
+		assertEquals("dotProduct 1", 2.0-3.0+4*0.5, ArrayMath.dotProduct(a,b));
+		b = new double[]{0, 0, 0};
+		assertEquals("dotProduct 2", 0.0, ArrayMath.dotProduct(a,b));
+		b = new double[]{10,20};
+		assertEquals("dotProduct 3", 2*10+3*20, ArrayMath.dotProduct(a, b));
+		b = new double[]{100,200,300,400,500};
+		assertEquals("dotProduct 4", 2*100+3*200+4*300, ArrayMath.dotProduct(a, b));
+		// trivial case
+		a = new double[]{2.0};
+		b = new double[]{5.0};
+		assertEquals("dotProduct 5", a[0]*b[0], ArrayMath.dotProduct(a, b));
+	}
+	
+	public void testSaxpy() {
+		double[] x = {2.0, 3.0, 4.0};
+		double[] y = {-1.0, 5.0, 10.0};
+		double a = 1.0;
+		double b = 10.0;
+		double[] expected = {2-10,3+50,4+100};
+		assertEquals("saxpy 1", expected, ArrayMath.saxpy(a, x, b, y));
+		
+		a = -5.0;
+		b = 1.0;
+		expected = new double[]{-10-1,-15+5,-20+10};
+		assertEquals("saxpy 2", expected, ArrayMath.saxpy(a, x, b, y));
+		x = new double[]{20, 40, 60, 80, 100};
+		
+		y = x;
+		a = 0.5;
+		b = -0.25;
+		expected = new double[]{ 10-5,20-10, 30-15, 40-20, 50-25};
+		assertEquals("saxpy 3", expected, ArrayMath.saxpy(a, x, b, y));
+	}
+	
+	/** Test the norm method. */
+	public void testNorm() {
+		double[] x = { 55 };
+		assertEquals("norm 1", 55.0, ArrayMath.norm(x));
+		x = new double[] {1.0, 2.0, 3.0, -4.0};
+		assertEquals("norm 2", Math.sqrt(1*1+2*2+3*3+4*4), ArrayMath.norm(x));
+		x = new double[] {0, 0, 0, 0, 1000};
+		assertEquals("norm 3", 1000, ArrayMath.norm(x));
+	}
+	
+	public void testMin() {
+		double[] x = { Double.MAX_VALUE };
+		double result = ArrayMath.min(x);
+		int index = ArrayMath.argmin(x);
+		assertEquals("min test 1", x[0], result);
+		assertEquals("argmin test 1", 0, index);
+		x = new double[] { -1, 1.1*TOL };
+		result = ArrayMath.min(x);
+		index = ArrayMath.argmin(x);
+		assertEquals("min tests 2", -1, result);
+		assertEquals("argmin test 2", 0, index);
+		int n = 20;
+		x = new double[n];
+		x[0] = 1.0E4;
+		for(int k=1; k<x.length; k++) x[k] = 0.5*x[k-1];
+		double expected = x[n-1];
+		result = ArrayMath.min(x);
+		index = ArrayMath.argmin(x);
+		assertEquals("min tests 3", 0, result);
+		assertEquals("argmin test 3", n-1, index);
+		// change location of minimum
+		int m = n/2 + 1;
+		x[m] = x[n-1];
+		x[n-1] = Double.MAX_VALUE;
+		result = ArrayMath.min(x);
+		index = ArrayMath.argmin(x);
+		assertEquals("min tests 4", 0, result);
+		assertEquals("argmin test 3", m, index);
+	}
+	
+	
+	/** Test if two double are equal. */
+	public boolean assertEquals(String msg, double expected, double actual) {
+		if (Math.abs(expected-actual) > TOL*Math.abs(expected)) {
+			System.out.printf("%s: expected %f, actual value %f%n", msg, expected, actual);
+			return fail();
+		}
+		System.out.printf("Test %s passed.%n", msg);
+		return pass();
+	}
+	
+	/** Test if two arrays are equal. */
+	public boolean assertEquals(String msg, double[] expected, double[] actual) {
+		if (actual == null && expected != null) {
+			System.out.printf("%s: Array should not be null%n", msg);
+			return fail();
+		}
+		if (actual != null && expected == null) {
+			System.out.printf("%s: Array should be null but is not.%n", msg);
+			return fail();
+		}
+		if (actual.length != expected.length) {
+			System.out.printf("%s: Array length %d incorrect%n", msg, actual.length);
+			return fail();
+		}
+		for(int k=0; k<expected.length; k++) {
+			if (Math.abs(expected[k]-actual[k]) > TOL*Math.abs(expected[k])) {
+				System.out.printf("%s: element %d expected %f, actual value %f%d", 
+						msg, k, expected[k], actual[k]);
+				return fail();
+			}
+		}
+		System.out.printf("Test %s passed.%n", msg);
+		return pass();
+	}
+	
+	/** Test if two arrays of object references are equal. */
+	public boolean assertEquals(String msg, Object[] expected, Object[] actual) {
+		if (actual == null && expected != null) {
+			System.out.printf("%s: Array should not be null%n", msg);
+			return fail();
+		}
+		if (actual != null && expected == null) {
+			System.out.printf("%s: Array should be null but is not.%n", msg);
+			return fail();
+		}
+		if (actual.length != expected.length) {
+			System.out.printf("%s: Array length %d incorrect%n", msg, actual.length);
+			return fail();
+		}
+		for(int k=0; k<expected.length; k++) {
+			if (expected[k]==null && actual[k]!=null) {
+				System.out.printf("%s: element %d expected %f, actual value %f%d", 
+						msg, k, expected[k], actual[k]);
+				return fail();
+			}
+			if (expected[k]!=null && actual[k]==null) {
+				System.out.printf("%s: element %d expected %f, actual value %f%d", 
+						msg, k, expected[k], actual[k]);
+				return fail();
+			}
+			if ( ! expected[k].equals(actual[k]) ) {
+				System.out.printf("%s: element %d expected %f, actual value %f%d", 
+						msg, k, expected[k], actual[k]);
+				return fail();
+			}
+		}
+		System.out.printf("Test %s passed.%n", msg);
+		return pass();
+	}
+	
+	/** Count failures. */
+	private boolean fail() {
+		failed++;
+		return false;
+	}
+	
+	/** Count passed tests. */
+	private boolean pass() {
+		passed++;
+		return true;
+	}
+	
+	public void run() {
+		init();
+		testDotProduct();
+		testSaxpy();
+		testNorm();
+		testMin();
+		
+		System.out.println("Tests passed: "+passed);
+		System.out.println("Tests failed: "+failed);
+	}
+	
+	public static void main(String[] args) {
+		ArrayMathTest tester = new ArrayMathTest();
+		tester.run();
 	}
 }
