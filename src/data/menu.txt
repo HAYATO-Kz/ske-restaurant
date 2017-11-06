@@ -1,4 +1,0 @@
-#Menu price
-Pizza; 250
-Salad; 90
-Cola; 40
