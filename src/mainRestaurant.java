@@ -78,9 +78,9 @@ public class mainRestaurant {
 		for (int i = 0; i < calprice.length; i++) {
 			lastQty.add(0);
 		}
-		int choice2 = Integer.parseInt(choice);
+		int choicesec = Integer.parseInt(choice);
 		for (int j = 0; j < calprice.length; j++) {
-			if (choice2 == j + 1) {
+			if (choicesec == j + 1) {
 				orders = order.get(j) + quantity;
 				order.add(j, orders);
 				order.remove(j + 1);
@@ -106,13 +106,13 @@ public class mainRestaurant {
 	}
 
 	public static void Order() {
-		double realPrice = 0;
+		double price = 0;
 		int quantity = 0;
 		String choice;
 		do {
 			System.out.print("Enter your Choice: ");
 			choice = scan.next();
-			realPrice = Order(sum, choice);
+			price = Order(sum, choice);
 			if ((!choice.equalsIgnoreCase("e") && !choice.equalsIgnoreCase("t") && !choice.equalsIgnoreCase("p")
 					&& !choice.equalsIgnoreCase("m")) && !choice.equals(checkInt(choice))) {
 				System.out.println("What is that menu?!\nPlease try again.");
@@ -125,10 +125,10 @@ public class mainRestaurant {
 			} else if (choice.equalsIgnoreCase("e")) {
 				end();
 			} else if (choice.equalsIgnoreCase("p")) {
-				payMent(realPrice);
+				payMent(price);
 				end();
-			} else if (!choice.equalsIgnoreCase("E") && !choice.equalsIgnoreCase("T") && !choice.equalsIgnoreCase("P")
-					&& !choice.equalsIgnoreCase("M")) {
+			} else if (!choice.equalsIgnoreCase("m") && !choice.equalsIgnoreCase("p") && !choice.equalsIgnoreCase("t")
+					&& !choice.equalsIgnoreCase("e")) {
 				System.out.print("Enter Quantity: ");
 				quantity = scan.nextInt();
 			} else {
