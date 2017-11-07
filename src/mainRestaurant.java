@@ -4,7 +4,7 @@ import java.util.Scanner;
 public class mainRestaurant {
 	public static Scanner scan = new Scanner(System.in);
 
-	public static ArrayList<Integer> order = new ArrayList<Integer>();
+	private static ArrayList<Integer> order = new ArrayList<Integer>();
 	static double sum = 0;
 
 	public static void menuList() {
@@ -27,7 +27,7 @@ public class mainRestaurant {
 		}
 	}
 
-	public static double Order(double sum, String choice) {
+	public static double order(double sum, String choice) {
 		String[] menu = RestaurantManager.getMenuItem();
 		double[] price = RestaurantManager.getPrices();
 		Double total = 0.0;
@@ -57,17 +57,17 @@ public class mainRestaurant {
 	}
 
 	public static void payMent(double lastPrice) {
-		double getMoney;
+		double pay;
 		do {
 			if (lastPrice >= 1000)
 				lastPrice = lastPrice * 90 / 100;
 			System.out.print("Pay(Baht): ");
-			getMoney = scan.nextDouble();
-			if (getMoney < lastPrice) {
+			pay = scan.nextDouble();
+			if (pay < lastPrice) {
 				System.out.println("Not enough money.Please try again.");
 			}
-		} while (getMoney < lastPrice);
-		System.out.printf("Change(Baht): %.2f\n", getMoney - lastPrice);
+		} while (pay < lastPrice);
+		System.out.printf("Change(Baht): %.2f\n", pay - lastPrice);
 	}
 
 	public static double price(String choice, int quantity) {
@@ -94,27 +94,16 @@ public class mainRestaurant {
 		return price;
 	}
 
-	public static String checkInt(String choice) {
-		String str;
-		for (int ch = 1; ch <= RestaurantManager.getPrices().length; ch++) {
-			str = Integer.toString(ch);
-			if (choice.equals(str)) {
-				return str;
-			}
-		}
-		return " ";
-	}
-
-	public static void Order() {
+	public static void enterOrder() {
 		double price = 0;
 		int quantity = 0;
 		String choice;
 		do {
 			System.out.print("Enter your Choice: ");
 			choice = scan.next();
-			price = Order(sum, choice);
+			price = order(sum, choice);
 			if ((!choice.equalsIgnoreCase("e") && !choice.equalsIgnoreCase("t") && !choice.equalsIgnoreCase("p")
-					&& !choice.equalsIgnoreCase("m")) && !choice.equals(checkInt(choice))) {
+					&& !choice.equalsIgnoreCase("m")) && !choice.equalsIgnoreCase(checkInt(choice))) {
 				System.out.println("What is that menu?!\nPlease try again.");
 				continue;
 			}
@@ -137,12 +126,16 @@ public class mainRestaurant {
 			sum = sum + price(choice, quantity);
 		} while (!choice.equalsIgnoreCase("E"));
 	}
-
-	public static void console() {
-		RestaurantManager.init();
-		menuList();
-		setOrder();
-		Order();
+	
+	public static String checkInt(String choice) {
+		String str;
+		for (int ch = 1; ch <= RestaurantManager.getPrices().length; ch++) {
+			str = Integer.toString(ch);
+			if (choice.equals(str)) {
+				return str;
+			}
+		}
+		return " ";
 	}
 
 	public static void end() {
@@ -157,6 +150,13 @@ public class mainRestaurant {
 		System.out.println("   \\                                   /    ");
 		System.out.println("    \\_________________________________/     ");
 		System.exit(0);
+	}
+
+	public static void console() {
+		RestaurantManager.init();
+		menuList();
+		setOrder();
+		enterOrder();
 	}
 
 	public static void main(String[] args) {
