@@ -2,3 +2,4 @@
 Pizza; 250
 Salad; 90
 Cola; 40
+pasta; 100

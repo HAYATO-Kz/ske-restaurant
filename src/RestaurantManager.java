@@ -24,7 +24,9 @@ private	static ArrayList<Double> prices = new ArrayList<>();
 			names.add(array[0]);
 			prices.add(Double.parseDouble(array[1]));
 		}
-	}
+		sc.close();
+	
+	 }
 	 
 	public static String[] getMenuItem(){
 		String[] namemenu =  names.toArray(new String[names.size()]);

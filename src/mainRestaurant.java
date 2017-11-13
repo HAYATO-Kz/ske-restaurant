@@ -78,9 +78,9 @@ public class mainRestaurant {
 		for (int i = 0; i < calprice.length; i++) {
 			lastQty.add(0);
 		}
-		int choicesec = Integer.parseInt(choice);
+		int choicess = Integer.parseInt(choice);
 		for (int j = 0; j < calprice.length; j++) {
-			if (choicesec == j + 1) {
+			if (choicess == j + 1) {
 				orders = order.get(j) + quantity;
 				order.add(j, orders);
 				order.remove(j + 1);
