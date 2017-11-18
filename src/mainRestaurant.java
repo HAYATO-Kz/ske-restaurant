@@ -2,11 +2,10 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /*
- * Main class for ske-restaurant application
- * It displays a menu and accept item to order,
- * When done,it prints a receipt include the 
- * order total and ask  how many you will pay 
- * and print your change 
+ * User interface for ske-restaurant customer application
+ * It show a menu and accept the order from customer,
+ * When done,it prints a receipt and ask  how many you will pay 
+ * after you input that will print your change 
  *  
  * @ author Hayato Kawai
  */
