@@ -1,12 +1,13 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 /*
- * This class is the main class for SKE restaurant
- * 
- * 
- * 
- * 
- * 
+ * Main class for ske-restaurant application
+ * It displays a menu and accept item to order,
+ * When done,it prints a receipt include the 
+ * order total and ask  how many you will pay 
+ * and print your change 
+ *  
+ * @ author Hayato Kawai
  */
 public class mainRestaurant {
 	public static Scanner scan = new Scanner(System.in);
@@ -14,6 +15,9 @@ public class mainRestaurant {
 	private static ArrayList<Integer> order = new ArrayList<Integer>();
 	static double sum = 0, sums=0;
 
+	/*
+	 * show the menu and tell what the input does
+	 */
 	public static void menuList(String[] menu, double[] price) {
 		System.out.println("--------- Welcome to SKE Restaurant ---------");
 		for (int i = 0; i < menu.length; i++) {
@@ -31,7 +35,10 @@ public class mainRestaurant {
 			order.add(0);
 		}
 	}
-
+	
+/*
+ * print the order if total >=1000  get 10% discount
+ */
 	public static double order(double sum, String choice,String[]menu,double[]price) {
 		double total = 0.0;
 		if (choice.equalsIgnoreCase("t")) {
@@ -61,7 +68,10 @@ public class mainRestaurant {
 		}
 		return sum;
 	}
-
+	
+/*
+ * ask how many you will pay and print your change
+ */
 	public static void payMent(double lastPrice) {
 		double pay;
 		do {
@@ -100,6 +110,9 @@ public class mainRestaurant {
 		return pricez;
 	}
 
+	/*
+	 *  receive the order
+	 */
 	public static void enterOrder(String[]menu,double []price) {
 		double prices = 0;
 		int quantity = 0;
@@ -145,6 +158,9 @@ public class mainRestaurant {
 		return " ";
 	}
 
+	/*
+	 * print before the application end
+	 */
 	public static void end() {
 		System.out.println("========= Thank you =========================");
 		System.out.println("                                             ");
@@ -168,6 +184,9 @@ public class mainRestaurant {
 		enterOrder(menu,price);
 	}
 
+	/*
+	 * main method for this class
+	 */
 	public static void main(String[] args) {
 		console();
 	}
