@@ -1,10 +1,19 @@
 
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Scanner;
-
+/*
+ * 	This class is class for
+ * 
+ * 
+ */
 public class RestaurantManager {
 private static	ArrayList<String> names = new ArrayList<>();
 private	static ArrayList<Double> prices = new ArrayList<>();
@@ -45,5 +54,35 @@ private	static ArrayList<Double> prices = new ArrayList<>();
 	
 	static void init(){
 		setMenu("data/menu.txt");
-	}	
+	}
+	
+	static void recordOrder(double[]price,double total,double sum,String[]menu,ArrayList<Integer> order,double sums) {
+
+	 FileWriter fileWriter;
+	try {
+		fileWriter = new FileWriter("order.txt");
+	    PrintWriter w = new PrintWriter(fileWriter);
+	    w.println("\t\tSKE Restaurant");
+		w.println("+------ Menu --------------+-- Qty --+-- Price --+");
+		for (int i = 0; i < price.length; i++) {
+			if (price[i] * order.get(i) != 0) {
+				w.printf("|%-8s\t\t   |\t%d    |\t%7.2f  |", menu[i], order.get(i),
+						price[i] * order.get(i));
+				w.println();
+			}
+		}
+		if (sums*(100/90) >= 1000) {
+			w.println("+------------------------------------+-----------+");
+			w.println("|Price over 1000 Baht.\t\t\t\t |");
+			w.println("|You got 10% discount.\t\t\t\t |");
+		}
+		w.println("+--------------------------+---------+-----------+");
+		w.printf("|Total\t\t\t   |\t%.0f    |\t%7.2f  |\n", total, sum);
+		w.println();
+		w.print("+--------------------------+---------+-----------+");
+		w.close();
+	} catch (IOException e) {
+		e.printStackTrace();
+	}
+	}
 }

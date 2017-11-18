@@ -1,11 +1,18 @@
 import java.util.ArrayList;
 import java.util.Scanner;
-
+/*
+ * This class is the main class for SKE restaurant
+ * 
+ * 
+ * 
+ * 
+ * 
+ */
 public class mainRestaurant {
 	public static Scanner scan = new Scanner(System.in);
 
 	private static ArrayList<Integer> order = new ArrayList<Integer>();
-	static double sum = 0;
+	static double sum = 0, sums=0;
 
 	public static void menuList(String[] menu, double[] price) {
 		System.out.println("--------- Welcome to SKE Restaurant ---------");
@@ -19,16 +26,14 @@ public class mainRestaurant {
 		System.out.println("[e] to exit");
 	}
 
-	public static void setOrder() {
-		for (int z = 0; z < RestaurantManager.getMenuItem().length; z++) {
+	public static void setOrder(String[]menu) {
+		for (int z = 0; z < menu.length; z++) {
 			order.add(0);
 		}
 	}
 
-	public static double order(double sum, String choice) {
-		String[] menu = RestaurantManager.getMenuItem();
-		double[] price = RestaurantManager.getPrices();
-		Double total = 0.0;
+	public static double order(double sum, String choice,String[]menu,double[]price) {
+		double total = 0.0;
 		if (choice.equalsIgnoreCase("t")) {
 			System.out.println("\t\tSKE Restaurant");
 			System.out.println("+------ Menu --------------+-- Qty --+-- Price --+");
@@ -38,7 +43,9 @@ public class mainRestaurant {
 							price[i] * order.get(i));
 				}
 			}
+			
 			if (sum >= 1000) {
+				sums=sum;
 				System.out.println("+------------------------------------+-----------+");
 				System.out.println("|Price over 1000 Baht.\t\t\t\t |");
 				System.out.println("|You got 10% discount.\t\t\t\t |");
@@ -50,6 +57,7 @@ public class mainRestaurant {
 			System.out.println("+--------------------------+---------+-----------+");
 			System.out.printf("|Total\t\t\t   |\t%.0f    |\t%7.2f  |\n", total, sum);
 			System.out.println("+--------------------------+---------+-----------+");
+			RestaurantManager.recordOrder(price,total,sum,menu,order,sums);
 		}
 		return sum;
 	}
@@ -68,10 +76,10 @@ public class mainRestaurant {
 		System.out.printf("Change(Baht): %.2f\n", pay - lastPrice);
 	}
 
-	public static double price(String choice, int quantity) {
-		double price = 0;
+	public static double price0(String choice, int quantity,double[]price) {
+		double pricez = 0;
 		int orders, all;
-		double[] calprice = RestaurantManager.getPrices();
+		double[] calprice = price;
 		ArrayList<Integer> lastQty = new ArrayList<Integer>();
 		for (int i = 0; i < calprice.length; i++) {
 			lastQty.add(0);
@@ -85,11 +93,11 @@ public class mainRestaurant {
 				all = quantity - lastQty.get(j);
 				lastQty.add(j, all);
 				lastQty.remove(j + 1);
-				price = all * calprice[j];
+				pricez = all * calprice[j];
 				break;
 			}
 		}
-		return price;
+		return pricez;
 	}
 
 	public static void enterOrder(String[]menu,double []price) {
@@ -99,9 +107,9 @@ public class mainRestaurant {
 		do {
 			System.out.print("Enter your Choice: ");
 			choice = scan.next();
-			prices = order(sum, choice);
+			prices = order(sum, choice,menu,price);
 			if ((!choice.equalsIgnoreCase("e") && !choice.equalsIgnoreCase("t") && !choice.equalsIgnoreCase("p")
-					&& !choice.equalsIgnoreCase("m")) && !choice.equalsIgnoreCase(checkInt(choice))) {
+					&& !choice.equalsIgnoreCase("m")) && !choice.equalsIgnoreCase(checkInt(choice,price))) {
 				System.out.println("What is that menu?!\nPlease try again.");
 				continue;
 			}
@@ -121,13 +129,13 @@ public class mainRestaurant {
 			} else {
 				continue;
 			}
-			sum = sum + price(choice, quantity);
+			sum = sum + price0(choice, quantity,price);
 		} while (!choice.equalsIgnoreCase("E"));
 	}
 	
-	public static String checkInt(String choice) {
+	public static String checkInt(String choice,double[]price) {
 		String str;
-		for (int ch = 1; ch <= RestaurantManager.getPrices().length; ch++) {
+		for (int ch = 1; ch <= price.length; ch++) {
 			str = Integer.toString(ch);
 			if (choice.equals(str)) {
 				return str;
@@ -155,7 +163,7 @@ public class mainRestaurant {
 		String[] menu = RestaurantManager.getMenuItem();
 		double[] price = RestaurantManager.getPrices();
 		menuList(menu,price);
-		setOrder();
+		setOrder(menu);
 		enterOrder(menu,price);
 	}
 
