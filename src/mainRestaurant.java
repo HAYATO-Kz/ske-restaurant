@@ -7,9 +7,7 @@ public class mainRestaurant {
 	private static ArrayList<Integer> order = new ArrayList<Integer>();
 	static double sum = 0;
 
-	public static void menuList() {
-		String[] menu = RestaurantManager.getMenuItem();
-		double[] price = RestaurantManager.getPrices();
+	public static void menuList(String[] menu, double[] price) {
 		System.out.println("--------- Welcome to SKE Restaurant ---------");
 		for (int i = 0; i < menu.length; i++) {
 			System.out.printf("%d.) %s", i + 1, menu[i]);
@@ -94,14 +92,14 @@ public class mainRestaurant {
 		return price;
 	}
 
-	public static void enterOrder() {
-		double price = 0;
+	public static void enterOrder(String[]menu,double []price) {
+		double prices = 0;
 		int quantity = 0;
 		String choice;
 		do {
 			System.out.print("Enter your Choice: ");
 			choice = scan.next();
-			price = order(sum, choice);
+			prices = order(sum, choice);
 			if ((!choice.equalsIgnoreCase("e") && !choice.equalsIgnoreCase("t") && !choice.equalsIgnoreCase("p")
 					&& !choice.equalsIgnoreCase("m")) && !choice.equalsIgnoreCase(checkInt(choice))) {
 				System.out.println("What is that menu?!\nPlease try again.");
@@ -109,12 +107,12 @@ public class mainRestaurant {
 			}
 			if (choice.equalsIgnoreCase("m")) {
 				System.out.println();
-				menuList();
+				menuList(menu,price);
 
 			} else if (choice.equalsIgnoreCase("e")) {
 				end();
 			} else if (choice.equalsIgnoreCase("p")) {
-				payMent(price);
+				payMent(prices);
 				end();
 			} else if (!choice.equalsIgnoreCase("m") && !choice.equalsIgnoreCase("p") && !choice.equalsIgnoreCase("t")
 					&& !choice.equalsIgnoreCase("e")) {
@@ -154,9 +152,11 @@ public class mainRestaurant {
 
 	public static void console() {
 		RestaurantManager.init();
-		menuList();
+		String[] menu = RestaurantManager.getMenuItem();
+		double[] price = RestaurantManager.getPrices();
+		menuList(menu,price);
 		setOrder();
-		enterOrder();
+		enterOrder(menu,price);
 	}
 
 	public static void main(String[] args) {
