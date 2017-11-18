@@ -48,3 +48,4 @@
  +
  +# MacOS junk (if you use a Mac)
  +.DS_Store
+/bin/

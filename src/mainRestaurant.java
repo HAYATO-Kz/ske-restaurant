@@ -116,6 +116,7 @@ public class mainRestaurant {
 			if (choice.equalsIgnoreCase("m")) {
 				System.out.println();
 				menuList(menu,price);
+				continue;
 
 			} else if (choice.equalsIgnoreCase("e")) {
 				end();
